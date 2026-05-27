@@ -2,11 +2,14 @@
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 
-#define SLEEP_TIME_MS CONFIG_LED_BLINK_SLEEP_TIME_MS
+#define SLEEP_TIME_MS CONFIG_APP_HEARTBEAT_PERIOD_MS
 
-/* The devicetree node identifier for the "led0" alias. */
-#define LED_NODE DT_ALIAS(led0)
+/* Devicetree alias from app.overlay */
+#define LED_NODE DT_ALIAS(app_led)
 
+#if !DT_NODE_HAS_STATUS(LED_NODE, okay)
+#error "Unsupported board: app-led alias is not defined"
+#endif
 
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED_NODE, gpios);
 
@@ -24,8 +27,10 @@ int main(void)
         if (gpio_pin_toggle_dt(&led) < 0) return 0;
 
         led_state = !led_state;
-        LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
+        LOG_INF("Heartbeat LED state: %s", led_state ? "ON" : "OFF");
+
         k_msleep(SLEEP_TIME_MS);
     }
+
     return 0;
 }
