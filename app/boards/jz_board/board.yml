@@ -1,0 +1,8 @@
+board:
+  name: jz_board
+  full_name: JZ Board
+  vendor: jz
+  socs:
+  # Physical nRF52840 SoC on PCA10056
+  - name: nrf52840
+
