@@ -1,0 +1,8 @@
+board:
+  name: ac_board
+  full_name: AC Board
+  vendor: ac
+  socs:
+  # Physical nRF52840 SoC on PCA10056
+  - name: nrf52840
+
