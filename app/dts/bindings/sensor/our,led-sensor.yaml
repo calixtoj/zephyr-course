@@ -1,0 +1,11 @@
+description: LEd sensor driver
+
+compatible: "our,led-sensor"
+
+include: base.yaml
+
+properties:
+  gpios:
+    type: phandle-array
+    required: true
+    description: GPIO connected to the LED
