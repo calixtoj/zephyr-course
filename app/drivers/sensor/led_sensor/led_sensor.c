@@ -16,6 +16,7 @@ struct led_sensor_config {
 
 struct led_sensor_data {
 	int state;
+    bool blink_enabled;
 };
 
 static int led_sensor_sample_fetch(const struct device *dev,
@@ -26,6 +27,10 @@ static int led_sensor_sample_fetch(const struct device *dev,
 
 	if ((chan != SENSOR_CHAN_ALL) && (chan != SENSOR_CHAN_LED_STATE)) {
 		return -ENOTSUP;
+	}
+
+    if (!data->blink_enabled) {
+	    return 0;
 	}
 
 	data->state = !data->state;
@@ -49,9 +54,22 @@ static int led_sensor_channel_get(const struct device *dev,
 	return 0;
 }
 
-static const struct sensor_driver_api led_sensor_api = {
-	.sample_fetch = led_sensor_sample_fetch,
-	.channel_get = led_sensor_channel_get,
+static int led_sensor_set_blink_enabled_impl(const struct device *dev,
+					     bool enabled)
+{
+	struct led_sensor_data *data = dev->data;
+
+	data->blink_enabled = enabled;
+
+	return 0;
+}
+
+static const struct led_sensor_driver_api led_sensor_api = {
+	.sensor_api = {
+		.sample_fetch = led_sensor_sample_fetch,
+		.channel_get = led_sensor_channel_get,
+	},
+	.set_blink_enabled = led_sensor_set_blink_enabled_impl,
 };
 
 static int led_sensor_init(const struct device *dev)
@@ -69,6 +87,7 @@ static int led_sensor_init(const struct device *dev)
 	}
 
 	data->state = 0;
+    data->blink_enabled = true;
 
 	return 0;
 }
