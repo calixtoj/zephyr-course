@@ -1,0 +1,2 @@
+# Load Zephyr board Kconfig descriptions.
+osource "/home/jcalixto/Documents/zephyr-training/deps/zephyr/boards/native/native_sim/Kconfig"

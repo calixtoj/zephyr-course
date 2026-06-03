@@ -1,0 +1,46 @@
+cmake:
+  application:
+    configuration-dir: '/home/jcalixto/Documents/zephyr-training/zephyr-course/tests/ring_buf'
+    source-dir: '/home/jcalixto/Documents/zephyr-training/zephyr-course/tests/ring_buf'
+  board:
+    name: 'native_sim'
+    path:
+     - '/home/jcalixto/Documents/zephyr-training/deps/zephyr/boards/native/native_sim'
+    qualifiers: 'native'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - '/home/jcalixto/Documents/zephyr-training/deps/zephyr/dts/bindings'
+    files:
+     - '/home/jcalixto/Documents/zephyr-training/deps/zephyr/boards/native/native_sim/native_sim.dts'
+    include-dirs:
+     - '/home/jcalixto/Documents/zephyr-training/deps/modules/hal/nxp/dts'
+     - '/home/jcalixto/Documents/zephyr-training/deps/modules/hal/stm32/dts'
+     - '/home/jcalixto/Documents/zephyr-training/deps/zephyr/include'
+     - '/home/jcalixto/Documents/zephyr-training/deps/zephyr/include/zephyr'
+     - '/home/jcalixto/Documents/zephyr-training/deps/zephyr/dts/common'
+     - '/home/jcalixto/Documents/zephyr-training/deps/zephyr/dts/vendor'
+     - '/home/jcalixto/Documents/zephyr-training/deps/zephyr/dts/rx'
+     - '/home/jcalixto/Documents/zephyr-training/deps/zephyr/dts/x86'
+     - '/home/jcalixto/Documents/zephyr-training/deps/zephyr/dts/xtensa'
+     - '/home/jcalixto/Documents/zephyr-training/deps/zephyr/dts/sparc'
+     - '/home/jcalixto/Documents/zephyr-training/deps/zephyr/dts/riscv'
+     - '/home/jcalixto/Documents/zephyr-training/deps/zephyr/dts/posix'
+     - '/home/jcalixto/Documents/zephyr-training/deps/zephyr/dts/arm64'
+     - '/home/jcalixto/Documents/zephyr-training/deps/zephyr/dts/arm'
+     - '/home/jcalixto/Documents/zephyr-training/deps/zephyr/dts/arc'
+     - '/home/jcalixto/Documents/zephyr-training/deps/zephyr/dts'
+  kconfig:
+    files:
+     - '/home/jcalixto/Documents/zephyr-training/deps/zephyr/boards/native/native_sim/native_sim_defconfig'
+     - '/home/jcalixto/Documents/zephyr-training/zephyr-course/tests/ring_buf/prj.conf'
+     - '/home/jcalixto/Documents/zephyr-training/zephyr-course/twister-out/native_sim_native/host/homework.unit.ring_buf/zephyr/misc/generated/extra_kconfig_options.conf'
+    user-files:
+     - '/home/jcalixto/Documents/zephyr-training/zephyr-course/tests/ring_buf/prj.conf'
+  toolchain:
+    name: 'host'
+    path: ''
+  zephyr:
+    version: '4.2.0'
+    zephyr-base: '/home/jcalixto/Documents/zephyr-training/deps/zephyr'
+version: '0.1.0'
